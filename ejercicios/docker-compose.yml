@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  php-apache:
+    image: php:apache
+    container_name: ejercicios-php
+    volumes:
+      - ./ejercicios/:/var/www/html
+    ports:
+      - "80:80"
+    command: ["apache2-foreground"]
