@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  server:
+    image: fjortegan/nginx-fpm
+    ports:
+      - "80:80"
+    volumes:
+      - ./ejercicios:/usr/share/nginx/html
+    links:
+      - fpm
+
+  fpm:
+    image: fjortegan/php-xdebug
+    volumes:
+      - ./codigophp:/var/www/html
+
+    command: /bin/bash -c "apt-get update && apt-get install -y \
+      && docker-php-ext-install mysqli \
+      && docker-php-ext-enable mysqli \
+      && php-fpm"
+
+  db1:
+    image: mysql
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_DATABASE: coches
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3307:3306"
+    volumes:
+      - /ejercicios/02-bases-de-datos/concesionario/sql:/docker-entrypoint-initdb.d
+
