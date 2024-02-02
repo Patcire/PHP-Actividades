@@ -8,8 +8,6 @@ funciones predefinidas). Compara el resultado de tu función y la función
 predefinida
 o Mostrar su longitud
 o Voltea el Array
-o Buscar algún elemento que nos introduzcan por URL y mostrar el índice
-Pista:index.php?elemento=blanco (Con $_GET sabemos el valor de elemento)
 
 -->
 <?php
@@ -72,8 +70,6 @@ echo "\n";
 
 $resultadoVolteo =  voltearArray($myArray);
 print   implode("", $resultadoVolteo);
-
-
 
 
 ?>
